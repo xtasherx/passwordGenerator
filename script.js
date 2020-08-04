@@ -25,6 +25,7 @@ let up = true;
 let low = true;
 let num = true;
 let spec = true;
+let optionString = "";
 
 // object to contain types of chars available
 const passOptions = {
@@ -40,23 +41,32 @@ const passOptions = {
 //   return type[randomMath];
 // }
 
-let optionString = "";
-
-if (up) {
-  optionString += passOptions.upper;
+function checkType(type, string) {
+  if (type) {
+    optionString += string;
+  }
 }
 
-if (low) {
-  optionString += passOptions.lower;
-}
+checkType(up, passOptions.upper);
+checkType(low, passOptions.lower);
+checkType(num, passOptions.numeric);
+checkType(spec, passOptions.special);
 
-if (num) {
-  optionString += passOptions.numeric;
-}
+// if (up) {
+//   optionString += passOptions.upper;
+// }
 
-if (spec) {
-  optionString += passOptions.special;
-}
+// if (low) {
+//   optionString += passOptions.lower;
+// }
+
+// if (num) {
+//   optionString += passOptions.numeric;
+// }
+
+// if (spec) {
+//   optionString += passOptions.special;
+// }
 
 console.log(optionString);
 // loop for string length
