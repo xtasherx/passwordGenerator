@@ -21,6 +21,7 @@ function checkType(type, string) {
 
 generateBtn.addEventListener("click", () => {
   let userLen = "";
+  // Loop to ensure the user picks the correct password length
   do {
     userLen = prompt(
       "Please choose a length for your password between 8 and 128 characters."
@@ -28,15 +29,11 @@ generateBtn.addEventListener("click", () => {
     console.log(userLen);
   } while (+userLen < 8 || +userLen > 128);
 
+  // Store the user char choices
   const userCaps = confirm("Would you like to use uppercase letters?");
   const userLow = confirm("Would you like to use lowercase letters?");
   const userNums = confirm("Would you like to use numbers?");
   const userSpecial = confirm("Would you like to use special charachters?");
-
-  // if (optionString === "") {
-  //   alert("You must choose at least on character type.");
-  // } else {
-  // }
 
   // Generate the password
   function generatePassword() {
@@ -64,8 +61,7 @@ generateBtn.addEventListener("click", () => {
   function writePassword() {
     var password = generatePassword();
     var passwordText = document.querySelector("#password");
-
-    // figure out why I can't get that fucking undefined not to show up if no choices are made
+    passwordText.value = password;
   }
 
   writePassword();
