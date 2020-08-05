@@ -12,20 +12,24 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-// let userLen = prompt(
-//   "Please choose a length for your password between 8 and 128 characters."
-// );
-// const userCaps = confirm("Would you like to use uppercase letters?");
-// const userLow = confirm("Would you like to use lowercase letters?");
-// const userNums = confirm("Would you like to use numbers?");
-// const userSpecial = confirm("Would you like to use special charachters?");
+let userLen = prompt(
+  "Please choose a length for your password between 8 and 128 characters."
+);
+const userCaps = confirm("Would you like to use uppercase letters?");
+const userLow = confirm("Would you like to use lowercase letters?");
+const userNums = confirm("Would you like to use numbers?");
+const userSpecial = confirm("Would you like to use special charachters?");
+let password = "";
 
 // random number function to generate a value between 0-10
-let up = true;
-let low = true;
-let num = true;
-let spec = true;
+
+//Placeholder booleans
+// let up = true;
+// let low = false;
+// let num = true;
+// let spec = true;
 let optionString = "";
+let passLength = +userLen;
 
 // object to contain types of chars available
 const passOptions = {
@@ -35,47 +39,30 @@ const passOptions = {
   special: "!@#$%^&*()+-/=,.",
 };
 
-// function to return a random character -- passing in the key/value pair from passOptions---the damn random has to be inside or it will always return the same value.
-// function randomPick(type) {
-//   const randomMath = Math.floor(Math.random() * 11);
-//   return type[randomMath];
-// }
+// function to add type to string if true --------fix------returns undefined if false
 
 function checkType(type, string) {
   if (type) {
     optionString += string;
+  } else {
+    return;
   }
 }
 
-checkType(up, passOptions.upper);
-checkType(low, passOptions.lower);
-checkType(num, passOptions.numeric);
-checkType(spec, passOptions.special);
-
-// if (up) {
-//   optionString += passOptions.upper;
-// }
-
-// if (low) {
-//   optionString += passOptions.lower;
-// }
-
-// if (num) {
-//   optionString += passOptions.numeric;
-// }
-
-// if (spec) {
-//   optionString += passOptions.special;
-// }
+// function calls for character types
+checkType(userCaps, passOptions.upper);
+checkType(userLow, passOptions.lower);
+checkType(userNums, passOptions.numeric);
+checkType(userSpecial, passOptions.special);
 
 console.log(optionString);
-// loop for string length
-for (let i = 0; i < 20; i++) {
-  const randomMath = Math.floor(Math.random() * 78);
 
-  console.log(optionString[randomMath]);
+// loop to create pw--needs to be passed the user chose length-----fix-----Need to get optionString logout into a new string-----
+for (let i = 0; i < passLength; i++) {
+  const randomMath = Math.floor(Math.random() * optionString.length);
+  password += optionString[randomMath];
 }
-
+console.log(password);
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
