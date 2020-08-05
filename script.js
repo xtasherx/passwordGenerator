@@ -2,14 +2,12 @@
 // When the button is pressed prompt for criteria
 // Control the number of characters allowed
 // Capture the user input and store in a variable
-// validate if the types are true or false
+// validate if the types are true or false//////////////////////////////////////////////////////////////
 
-// generate the string --seriously though how the fuck
-// Create a loop for the length of the string
+// generate the string//////////////////////////////////////////////////////////////////////////////////
+// Create a loop for the length of the string//////////////////////////////////////////////////////////
+// return the string to the user//////////////////////////////////////////////////////////////////////
 
-// return the string to the user
-
-// Assignment Code
 var generateBtn = document.querySelector("#generate");
 
 let userLen = prompt(
@@ -20,16 +18,7 @@ const userLow = confirm("Would you like to use lowercase letters?");
 const userNums = confirm("Would you like to use numbers?");
 const userSpecial = confirm("Would you like to use special charachters?");
 let password = "";
-
-// random number function to generate a value between 0-10
-
-//Placeholder booleans
-// let up = true;
-// let low = false;
-// let num = true;
-// let spec = true;
 let optionString = "";
-let passLength = +userLen;
 
 // object to contain types of chars available
 const passOptions = {
@@ -39,7 +28,7 @@ const passOptions = {
   special: "!@#$%^&*()+-/=,.",
 };
 
-// function to add type to string if true --------fix------returns undefined if false
+// function to add type to string if true
 
 function checkType(type, string) {
   if (type) {
@@ -49,20 +38,23 @@ function checkType(type, string) {
   }
 }
 
-// function calls for character types
-checkType(userCaps, passOptions.upper);
-checkType(userLow, passOptions.lower);
-checkType(userNums, passOptions.numeric);
-checkType(userSpecial, passOptions.special);
+// Generate the password--
 
-console.log(optionString);
-
-// loop to create pw--needs to be passed the user chose length-----fix-----Need to get optionString logout into a new string-----
-for (let i = 0; i < passLength; i++) {
-  const randomMath = Math.floor(Math.random() * optionString.length);
-  password += optionString[randomMath];
+function generatePassword(params) {
+  // Verify user character choices and pw length--add types of chars to string if chosen
+  checkType(userCaps, passOptions.upper);
+  checkType(userLow, passOptions.lower);
+  checkType(userNums, passOptions.numeric);
+  checkType(userSpecial, passOptions.special);
+  let passLength = +userLen;
+  // Produce random char from Optionstring at each iteration and add it to the password variable to create new string.
+  for (let i = 0; i < passLength; i++) {
+    const randomMath = Math.floor(Math.random() * optionString.length);
+    password += optionString[randomMath];
+  }
+  return password;
 }
-console.log(password);
+
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
@@ -72,4 +64,6 @@ function writePassword() {
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+generateBtn.addEventListener("click", () => {
+  writePassword();
+});
